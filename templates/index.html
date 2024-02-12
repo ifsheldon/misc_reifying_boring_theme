@@ -15,19 +15,43 @@
     <div class="lg:h-screen lg:w-1/2 flex items-center">
         <div class="mx-16 flex flex-col space-y-16 lg:space-y-4">
             <h1 class="font-serif text-8xl lg:text-4xl text-slate-900 dark:text-slate-300">
-                {{ config.extra.homepage_title }}
+                {{ config.title }}
             </h1>
             <p class="font-sans text-5xl lg:text-xl text-slate-600 dark:text-slate-500">
-                {{ config.extra.homepage_subtitle }}
+                {{ config.description }}
             </p>
             {% block homepage_content_extend %}
+                {% if lang == config.default_language %}
                 <div class="mt-4 text-5xl lg:text-xl">
                     <a class="font-sans text-gray-500 hover:text-gray-400
                         dark:text-slate-500 dark:hover:text-slate-400 transition"
                         href="/blog">
-                        Visit my blog <i class="las la-arrow-right"></i>
+                        {{ config.extra.welcome_entry_zh }} <i class="las la-arrow-right"></i>
                     </a>
                 </div>
+                <div class="mt-4 text-5xl lg:text-xl">
+                    <a class="font-sans text-gray-500 hover:text-gray-400
+                        dark:text-slate-500 dark:hover:text-slate-400 transition"
+                        href="/en">
+                        English <i class="las la-arrow-right"></i>
+                    </a>
+                </div>
+                {% else %}
+                <div class="mt-4 text-5xl lg:text-xl">
+                    <a class="font-sans text-gray-500 hover:text-gray-400
+                        dark:text-slate-500 dark:hover:text-slate-400 transition"
+                        href="/en/blog">
+                        {{ config.extra.welcome_entry_en }} <i class="las la-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="mt-4 text-5xl lg:text-xl">
+                    <a class="font-sans text-gray-500 hover:text-gray-400
+                        dark:text-slate-500 dark:hover:text-slate-400 transition"
+                        href="/">
+                        中文 <i class="las la-arrow-right"></i>
+                    </a>
+                </div>
+                {% endif %}
                 {% block social %}
                     {% if config.extra.social %}            
                         <div class="mt-4 text-8xl lg:text-4xl flex gap-2">
